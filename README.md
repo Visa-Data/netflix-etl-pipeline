@@ -1,122 +1,62 @@
-Netflix ETL Pipeline (Python + PostgreSQL)
-This project is a simple end-to-end ETL (Extract, Transform, Load) pipeline built for learning and interview preparation as a junior data engineer. It takes a raw Netflix titles dataset (CSV), cleans it using Python and pandas, and loads it into a PostgreSQL database for SQL analysis.
+🎬 Netflix ETL Pipeline | Python + PostgreSQL
+A clean, beginner-friendly end-to-end data engineering project showcasing ETL skills with real-world dataset.
 
-1. Project goals
-Build a realistic batch ETL pipeline on a local machine.
+🎯 What This Project Does
+Extracts raw Netflix titles data (CSV) → Transforms with Python & pandas → Loads into PostgreSQL → Runs SQL analytics.
 
-Practice working with CSV data, cleaning it, and loading it into a relational database.
+Built to demonstrate:
+✅ ETL pipeline design
+✅ Data cleaning & transformation
+✅ Database integration
+✅ SQL querying skills
 
-Run SQL queries to answer basic questions about the data (e.g., shows by country and rating).
+🛠️ Tech Stack
+Component	Technology
+Language	Python 3.14
+Libraries	pandas, SQLAlchemy, psycopg2-binary
+Database	PostgreSQL
+Tools	VS Code, Git, pgAdmin
 
-This project is designed to mirror real-world beginner data engineering tasks.
+📂 Project Structure
+text
+├── data/
+│   ├── raw/          # Netflix CSV from Kaggle
+│   └── processed/    # Optional cleaned exports
+├── src/
+│   └── etl.py        # Main ETL pipeline script
+├── sql/
+│   └── analysis.sql  # SQL queries for insights
+└── README.md
 
-2. Tech stack
-Programming: Python 3.14
+🚀 Pipeline Flow
+1️⃣ Extract
+Reads netflix_titles.csv using pandas
 
-Libraries: pandas, SQLAlchemy, psycopg2-binary
+2️⃣ Transform
+Removes duplicates
 
-Database: PostgreSQL (local)
+Fills missing values with "Unknown"
 
-Tools: VS Code, Git, pgAdmin (optional)
+Standardizes column names to snake_case
 
-3. Dataset
-Source: Netflix titles dataset from Kaggle (movies and TV shows metadata).
+Converts date_added to datetime
 
-Format: CSV file (e.g., netflix_titles.csv).
+3️⃣ Load
+Connects to PostgreSQL (netflix_db)
 
-Location: Saved locally in the project under data/raw/.
+Writes cleaned data to netflix_shows table via SQLAlchemy
 
-Note: The original dataset is not included in this repository due to licensing; it can be downloaded directly from Kaggle by searching for “Netflix titles dataset”.
+Result: ETL complete! 🎉
 
-4. Project structure
-Example folder layout:
+💡 Key SQL Insights
+✔️ Shows by Country – Identified top content-producing regions
+✔️ Shows by Rating – Analyzed content maturity distribution (TV-MA, PG, etc.)
 
-data/
+📊 Full queries available in sql/analysis.sql
 
-raw/ → original CSV file from Kaggle (e.g., netflix_titles.csv)
+📌 Notes
+Dataset not included (Kaggle licensing) – download from Kaggle: "Netflix titles dataset"
 
-processed/ → optional cleaned CSV exports
+.gitignore configured to exclude raw data files
 
-src/
-
-etl.py → main ETL script (Python)
-
-sql/
-
-analysis.sql → SQL queries used for analysis
-
-README.md → project documentation
-
-5. ETL pipeline steps
-The ETL pipeline in src/etl.py does the following:
-
-Extract
-
-Reads the raw CSV file (Netflix titles) from data/raw/ using pandas.
-
-Transform
-
-Drops duplicate rows.
-
-Fills missing values with the string “Unknown” for consistency.
-
-Standardizes column names to snake_case (lowercase, underscores instead of spaces).
-
-Converts the date_added column to a proper datetime type.
-
-Load
-
-Connects to a local PostgreSQL database named netflix_db.
-
-Writes the cleaned DataFrame into a table called netflix_shows using SQLAlchemy and pandas to_sql().
-
-When the script finishes, it prints:
-ETL complete!
-
-6. How to run the project
-Prerequisites:
-
-Python 3 installed and available as py -3.
-
-PostgreSQL installed and running locally.
-
-A database created named netflix_db.
-
-Required Python packages installed.
-
-Install Python dependencies
-
-Run in the project root:
-
-py -3 -m pip install --upgrade pip
-
-py -3 -m pip install pandas numpy sqlalchemy psycopg2-binary openpyxl
-
-Create the PostgreSQL database
-
-Start PostgreSQL.
-
-Create a database named netflix_db (via pgAdmin or psql):
-
-CREATE DATABASE netflix_db;
-
-Place the dataset
-
-Download the Netflix titles CSV from Kaggle.
-
-Save it as data/raw/netflix_titles.csv inside this project.
-
-Run the ETL script
-
-From the project root directory:
-
-py -3 src\etl.py
-
-If everything is configured correctly, you should see:
-
-ETL complete!
-
-This means the cleaned data has been loaded into the netflix_shows table inside the netflix_db database.
-
-7. SQL analysis
-After loading the data, use the queries in sql/analysis.sql to explore the dataset.
+🔗 Live Repo: github.com/Visa-Data/netflix-etl-pipeline
