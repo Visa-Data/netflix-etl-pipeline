@@ -83,4 +83,3 @@ Dataset not included (Kaggle licensing) – download from Kaggle: "Netflix title
 
 .gitignore configured to exclude raw data files
 
-🔗 Live Repo: github.com/Visa-Data/netflix-etl-pipeline
